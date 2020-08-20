@@ -13,12 +13,56 @@ class BotonesPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 _tiulos(),
+                _botonesRedondeados(),
               ],
             )
           )
         ],
       ),
       bottomNavigationBar: _bottomNavigationBar(context)
+    );
+  }
+
+  Widget _botonesRedondeados(){
+    return Table(
+      children: [
+        TableRow(
+          children: [
+            _crearBoton(),
+            _crearBoton()
+          ]
+        ),
+        TableRow(
+          children: [
+            _crearBoton(),
+            _crearBoton()
+          ]
+        )
+      ],
+    );
+  }
+
+  Widget _crearBoton(){
+    return Container(
+      height: 180.0,
+      margin: EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+        color: Color.fromRGBO(62, 66, 107, 0.7),
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          SizedBox(height: 5.0,),
+          CircleAvatar(
+            backgroundColor: Colors.pinkAccent,
+            radius: 35.0,
+            child: Icon(Icons.swap_calls, color: Colors.white, size: 30.0,),
+          ),
+          Text('item', style: TextStyle(color: Colors.pink)),
+          SizedBox(height: 5.0,)
+        ],
+      ),
     );
   }
 
