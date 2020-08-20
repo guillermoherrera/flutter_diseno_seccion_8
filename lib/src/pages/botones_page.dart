@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -28,40 +29,67 @@ class BotonesPage extends StatelessWidget {
       children: [
         TableRow(
           children: [
-            _crearBoton(),
-            _crearBoton()
+            _crearBoton(Colors.blue, Icons.border_all, 'general'),
+            _crearBoton(Colors.purpleAccent, Icons.directions_bus, 'bus')
           ]
         ),
         TableRow(
           children: [
-            _crearBoton(),
-            _crearBoton()
+            _crearBoton(Colors.pinkAccent, Icons.shop, 'buy'),
+            _crearBoton(Colors.orange, Icons.insert_drive_file, 'file')
+          ]
+        ),
+        TableRow(
+          children: [
+            _crearBoton(Colors.blueAccent, Icons.movie_filter, 'movie'),
+            _crearBoton(Colors.green, Icons.cloud, 'cloud')
+          ]
+        ),
+        TableRow(
+          children: [
+            _crearBoton(Colors.red, Icons.collections, 'fotos'),
+            _crearBoton(Colors.teal, Icons.help_outline, 'help')
           ]
         )
       ],
     );
   }
 
-  Widget _crearBoton(){
+  Widget _crearBoton(Color color, IconData icono, String texto){
+
+
     return Container(
       height: 180.0,
       margin: EdgeInsets.all(15.0),
+      width: 180.0,
       decoration: BoxDecoration(
-        color: Color.fromRGBO(62, 66, 107, 0.7),
+          color: Color.fromRGBO(62, 66, 107, 0.7),
+          borderRadius: BorderRadius.circular(20.0)),
+      child: ClipRRect(
         borderRadius: BorderRadius.circular(20.0),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          SizedBox(height: 5.0,),
-          CircleAvatar(
-            backgroundColor: Colors.pinkAccent,
-            radius: 35.0,
-            child: Icon(Icons.swap_calls, color: Colors.white, size: 30.0,),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              SizedBox(
+                height: 5.0,
+              ),
+              CircleAvatar(
+                backgroundColor: color,
+                radius: 40.0,
+                child: Icon(icono, color: Colors.white, size: 30.0),
+              ),
+              Text(
+                texto,
+                style: TextStyle(color: color, fontSize: 18.0),
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+            ],
           ),
-          Text('item', style: TextStyle(color: Colors.pink)),
-          SizedBox(height: 5.0,)
-        ],
+        ),
       ),
     );
   }
